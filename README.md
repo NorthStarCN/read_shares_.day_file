@@ -1,8 +1,10 @@
 # read_shares_.day_file
-读取股票day文件
+C#实现 读取股票的.day文件
 
 
 现在主要就是读取成交额有问题 不太对
+
+网上大多都说40是一天的 但是对于这几个数据我发现32是一天的 有点奇怪 可能也是因为这个原因导致成交额的计算出了差错
 
 
 
@@ -20,4 +22,4 @@
 
 [1]: http://wenku.baidu.com/view/6945fdcfdd3383c4bb4cd28c.html
 [2]: http://zhidao.baidu.com/link?url=pN6XlhbjW8GXVlakd-0ApxL81nanP1Xu_AmZEPu-m1jnupXij37Hg04ar5Cyi-RpaJfSnnC16tl2YUTh0Ln2Sa&qq-pf-to=pcqq.c2c
-[3]:http://www.voidcn.com/blog/luangj/article/p-4569729.html
+[3]: http://www.voidcn.com/blog/luangj/article/p-4569729.html
