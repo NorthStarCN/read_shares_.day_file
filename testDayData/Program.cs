@@ -15,13 +15,12 @@ namespace ConsoleApplication1
 		{
 			Console.Write("file path:");
 			//Console.Write("Directory path:");
-			string filePath = Console.ReadLine();
-			//string filePath = @"‪E:\Documents\Visual Studio 2013\Projects\Read_shares_day_file\testDayData\sz000001.day";
+			string filePath = @"C:\Users\Sony-SVD1321APX\Desktop\新建文件夹\读取股票软件的day文件数据\读取股票day文件\sz000001.day";
+			//string filePath = Console.ReadLine();
 			if (filePath.StartsWith("\"") && filePath.EndsWith("\""))
 			{
 				filePath = filePath.Substring(1, filePath.Length - 2);
 			}
-			separtor = "\t";
 			ReadDayFile(filePath);
 			/*string[] files = Directory.GetFiles(filePath);
 			for (int i = 0; i < files.Length; i++)
@@ -38,36 +37,37 @@ namespace ConsoleApplication1
 
 		static void ReadDayFile(string filePath)
 		{
-			string outSteing = filePath + "\n" + GetDataTitle() + "\n";
+			//separtor = "\t";
+			string outSteing = GetDataTitle() + "\n";
 
 			using (FileStream fileStream = File.Open(filePath, FileMode.Open))
 			{
 				byte[] bytes = new byte[offset];
 				Console.WriteLine(GetDataTitle());
-				for (int i = 0; i < fileStream.Length; i += offset)
+				for (int i = 0; i < 500; i += offset)
 				{
 					fileStream.Read(bytes, 0, offset);
-					/*for (int j = 0; j < bytes.Length; j++)
+					for (int j = 0; j < bytes.Length; j++)
 					{
 						Console.Write(bytes[j] + " ");
 						if ((j + 1) % 4 == 0)
 						{
-							//Console.Write("|");
+							Console.Write("|");
 						}
-						if ((j + 1) % bytes.Length == 0)
+						if ((j + 1) % 32 == 0)
 						{
 							Console.WriteLine();
 						}
-					}*/
-					string line = GetDataString(bytes, false);
-					outSteing += line + "\n";
-					Console.WriteLine(line);
+					}
+					//string line = GetDataString(bytes, false);
+					//outSteing += line + "\n";
+					//Console.WriteLine(line);
 				}
 			}
 
-			filePath = filePath.Replace(".day", suffix);
-			Console.WriteLine("save to " + filePath);
-			File.WriteAllText(filePath, outSteing);
+			//filePath = filePath.Replace(".day", suffix);
+			//Console.WriteLine("save to " + filePath);
+			//File.WriteAllText(filePath, outSteing);
 		}
 
 		static string GetDataTitle()
@@ -95,8 +95,8 @@ namespace ConsoleApplication1
 			highestPrice = (bytes[8] & 0xFF) | ((bytes[9] & 0xFF) << 8) | ((bytes[10] & 0xFF) << 16) | ((bytes[11] & 0xFF) << 24);
 			lowestPrice = (bytes[12] & 0xFF) | ((bytes[13] & 0xFF) << 8) | ((bytes[14] & 0xFF) << 16) | ((bytes[15] & 0xFF) << 24);
 			closePrice = (bytes[16] & 0xFF) | ((bytes[17] & 0xFF) << 8) | ((bytes[18] & 0xFF) << 16) | ((bytes[19] & 0xFF) << 24);
-			money = (bytes[20] & 0xFF) | ((bytes[21] & 0xFF) << 8) | ((bytes[22] & 0xFF) << 16) | ((bytes[23] & 0xFF) << 24);
 			//money = (((bytes[20]) | ((bytes[21]) << 6) | ((bytes[22]) << 14) | ((bytes[23]) << 22)));
+			money = (bytes[20] & 0xFF) | ((bytes[21] & 0xFF) << 8) | ((bytes[22] & 0xFF) << 16) | ((bytes[23] & 0xFF) << 24);
 			volume = (bytes[24] & 0xFF) | ((bytes[25] & 0xFF) << 8) | ((bytes[26] & 0xFF) << 16) | ((bytes[27] & 0xFF) << 24);
 
 
